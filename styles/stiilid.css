@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to bottom right, rgba(194, 95, 95,.5), rgba(161, 161, 85,.3));
+    color:black;
+    font-family: Verdana, sans-serif;
+    font-size: 12px;
+}
+
+main {
+    //background-image: url("../../~andrus.rinde/media/pic/background/tlu_h200.png");
+    background-repeat: no-repeat;
+    background-position: right 350px;
+    background-attachment: fixed;
+}
+
+nav {
+    position: sticky;
+    top: 10px;
+    /* background: rgba(161, 161, 85,.3);
+    border: 2px solid rgba(161, 161, 85,.3); */
+    background-image: linear-gradient(to bottom right, rgb(255, 255, 255), rgba(0, 0, 0, 0.6));
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin-right: auto;
+}
+
+a { 
+    color: blue
+}
+
+a:hover {
+    color: rgb(0, 140, 255);
+}
+
+#menuu {
+    display: flex;
+    align-items: center;
+}
+
+header {
+}
+
+footer {
+    background-color: rgba(160, 158, 158,.4);
+    padding: 50px;
+    font-size: 80%;
+}
+
+section {
+    padding: 20px;
+    border: 2px dotted rgb(243, 102, 102);
+    //background-image: url("../../~andrus.rinde/media/pic/background/knopka/knopka_2_1.png"), url("../../~andrus.rinde/media/pic/background/knopka/knopka_2_2.png"),  url("../../~andrus.rinde/media/pic/background/knopka/knopka_2_3.png"),  url("../../~andrus.rinde/media/pic/background/knopka/knopka_2_4.png");
+    background-repeat: no-repeat;
+    background-position: bottom right, bottom left, top right, top left;
+    background-size: 25px auto;
+    border-radius: 20px;
+}
+
+footer p {
+    text-align: center;
+}
+
+figure {
+    margin-left: 0;
+}
+
+.photoframe {
+    border: 20px solid white;
+    //border-image-source: url("../../~andrus.rinde/media/pic/border/raam_04.png");
+    border-image-slice: 20 20 20 20;
+    border-image-repeat: round;
+}
+
+#banner {
+    width: -webkit-fill-available;
+    border: none;
+}
+
+h1 {
+    opacity: 0.8;
+    text-align:center;
+    //font-family: harngtonFont, sans-serif;
+}
+h2 {
+    //font-family: harngtonFont, sans-serif;
+    font-size: 2rem;
+}
+
+.thumbgallery
+{
+	width: 100px;
+	height: 200px;
+	padding: 5px;
+	float: left;
+	margin-right: 5px;
+}
+
+.thumbs
+{
+    border-radius: 5px;
+    cursor: pointer;
+	opacity: 0.7;
+	transform-origin: 50% 50%;
+    transition: 0.3s;
+	filter: blur(1px);
+}
+
+.thumbs:hover
+{	
+	opacity: 1;
+	filter: none;
+	transform: scale(1.05);
+}
+
+/* @font-face {
+    font-family: harngtonFont;
+    src: url("HARNGTON.TTF") format("truetype");
+} */
