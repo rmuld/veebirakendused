@@ -27,17 +27,11 @@
         <header id="pais">
             <!-- <img id="banner" src="../../~andrus.rinde/media/pic/rif21_banner.png" alt="RIF21" width="auto" height="auto"> -->
             <h1>HKI5099.HK Veebirakendused ja nende loomine</h1>
-            <br>
-            <nav>
-                <h2>Lingid</h2>
-                <ul id="menuu">
-                    <li><a href="?logout=1">Logi välja</a></li>
-                    <li><a href="home.php">Home</a></li>
-                    <li><a href="addNews.php">Lisa uudis</a></li>
-                    <li><a href="https://www.tlu.ee/haapsalu" target="_blank" >Tallinna Ülikooli Haapsalu kolledžis</a></li>
-                </ul>
-            </nav>
+            <hr>
         </header>
+        <?php
+        require_once "pagenav.php";
+        ?>
         
         <main>
            <section>

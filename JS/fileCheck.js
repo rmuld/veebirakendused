@@ -1,6 +1,6 @@
 let fileSize = 1024 * 1024 * 1.5;
 
-windows.onload = function () {
+window.onload = function () {
     document.querySelector("#photo_submit").disabled = true;
     document.querySelector("#photo_input").addEventListener("change", checkSize);
 }

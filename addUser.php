@@ -1,7 +1,7 @@
 <?php
     require_once "fncGeneral.php";
     require_once "../../conf.php";
-    require_once("fncUser.php");
+    require_once "fncUser.php";
 
     $notice = null;
     $firstname = null;
@@ -143,9 +143,6 @@
 	<title>Veebiprogrammeerimine</title>
   </head>
   <body>
-	<h1>Minu äge veebirakendus</h1>
-	<p>See leht on valminud õppetöö raames ja ei sisalda mingisugust tأµsiseltvأµetavat sisu!</p>
-	<hr>
     <h2>Loo endale kasutajakonto</h2>
 		
 	<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">

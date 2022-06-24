@@ -150,32 +150,17 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php echo $_SESSION["firstname"]; ?> teeb veebi</title>
 	<link rel="stylesheet" type="text/css" href="styles/stiilid.css">
-    <script src="js/fileCheck.js" defer></script> 
+    <script src="JS/fileCheck.js" defer></script> 
 </head>
 <body>
 	<header>
-    <img id="banner" src="../../~andrus.rinde/media/pic/rif21_banner.png" alt="RIF21" width="auto" height="auto">
-		<h1><?php echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?> arendab veebi</h1>
-		<details>
-			<summary>Selle lehe mõte</summary>
-			<p>See leht on loodud õppetöö raames ja ei sisalda tõsiseltvõetavat materjali!</p>
-		</details>
-		
-		<hr>
+        <img id="banner" src="../../~andrus.rinde/media/pic/rif21_banner.png" alt="RIF21" width="auto" height="auto">
+		<h1><?php echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?> arendab veebi</h1>		
 	</header>
 	
-	<nav>
-		<h2>Olulised lingid</h2>
-            <ul id="menuu">
-                <li><a href="?logout=1">Logi välja</a></li>
-                <li><a href="showGallery.php">Vaata fotogaleriid</a></li>
-                <li><a href="addNews.php">Lisa uudis</a></li>
-                <li><a href="showNews.php">Vaata uudiseid</a></li>
-                <li><a href="home.php">Home</a></li>
-                <li><a href="https://www.tlu.ee/haapsalu" target="_blank" >Tallinna Ülikooli Haapsalu kolledžis</a></li>
-                    
-            </ul>
-	</nav>
+	<?php
+    require_once "pagenav.php";
+    ?>
 	<main>
 	<section>
 			
@@ -197,7 +182,7 @@
 			<input type="radio" name="privacy_input" id="privacy_input_3" value="3" <?php if($privacy == 3){echo " checked";} ?>>
 			<label for="privacy_input_3">Avalik (kõik näevad)</label>
 			<br>
-			<input type="submit" name="photo_submit" value="Lae pilt üles">
+			<input type="submit" name="photo_submit" id="photo_submit" value="Lae pilt üles">
 		</form>
 		<span id="notice"><?php echo $photo_upload_notice; ?></span>
 	</section>

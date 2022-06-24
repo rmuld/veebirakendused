@@ -43,11 +43,11 @@ function sign_in($email, $password){
     $notice = 0; //väärtus 0 -> ei ole õnnestunud ja 1 õnnestumine
 	$conn = new mysqli($GLOBALS["server_host"], $GLOBALS["server_user_name"], $GLOBALS["server_password"], $GLOBALS["database"]);
 	$conn->set_charset("utf8");
-    $stmt = $conn->prepare("SELECT id, firstname, lastname, password FROM vr22_users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT id, firstname, lastname, email, birthdate, gender, password FROM vr22_users WHERE email = ?");
     echo $conn->error;
     $stmt->bind_param("s", $email); 
     //seon loetud andmed muutujatega
-    $stmt->bind_result($id_from_db, $firstname_from_db, $lastname_from_db, $password_from_db);
+    $stmt->bind_result($id_from_db, $firstname_from_db, $lastname_from_db, $email_from_db, $birthday_from_db, $gender_from_db, $password_from_db);
     $stmt->execute();
 
     if($stmt->fetch()){
@@ -59,6 +59,10 @@ function sign_in($email, $password){
             $_SESSION["user_id"] = $id_from_db;
             $_SESSION["firstname"] = $firstname_from_db;
             $_SESSION["lastname"] = $lastname_from_db;
+            $_SESSION["email"] = $email_from_db;
+            $_SESSION["gender"] = $gender_from_db;
+            $_SESSION["birthdate"] = $birthday_from_db;
+            $_SESSION["password"] = $password_from_db;
 
             header("Location: home.php");
             $stmt->close();
@@ -72,3 +76,7 @@ function sign_in($email, $password){
     return $notice;
 
 }
+
+// function edit_user($firstname, $surname, $gender, $birth_date, $email, $password) {
+
+// }
