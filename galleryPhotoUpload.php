@@ -6,13 +6,14 @@
     require_once "classes/Generic.class.php" ;
     require_once "classes/PhotoUpload.class.php" ;
 
+    //klassi katsetamine välja kommenteeritud
     //testin classi kasutamist
-    $genericObject = new Generic(8);
+    //$genericObject = new Generic(8);
     //väljastan avaliku väärtuse (privaatset väärtust väljastada ei saa)
-    echo "Klassi avalik väärtus on: " .$genericObject->justValue;
-    $genericObject->reveal();
+    //echo "Klassi avalik väärtus on: " .$genericObject->justValue;
+    //$genericObject->reveal();
     //unset käsiga saame muutja ära nullida
-    unset($genericObject);
+    //unset($genericObject);
 
     $photo_error = null;
     $photo_upload_notice = null;

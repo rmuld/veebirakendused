@@ -1,27 +1,12 @@
 <?php
     require_once "useSession.php";
     require_once "../../conf.php";
+    require_once "fncGeneral.php";
     require_once "fncUser.php";
-
-    //============== TODO Loen kasutaja andmed baasist
-    $notice = 0; //väärtus 0 -> ei ole õnnestunud ja 1 õnnestumine
-	$conn = new mysqli($GLOBALS["server_host"], $GLOBALS["server_user_name"], $GLOBALS["server_password"], $GLOBALS["database"]);
-	$conn->set_charset("utf8");
-    $stmt = $conn->prepare("SELECT id, firstname, lastname, birthdate, gender, email, password FROM vr22_users WHERE email = ?");
-    echo $conn->error;
-    $stmt->bind_result($id_from_db, $firstname_from_db, $lastname_from_db, $birth_date_from_db, $gender_from_db, $email_from_db, $password_from_db);
-    $stmt->execute();
-    echo $firstname_from_db;
-    if($stmt->fetch()){
-      //tühi
-        
-    }
-    $stmt->close();
-    $conn->close();
-    //==============
 
     $notice = null;
     $month_names_et = ["jaanuar", "veebruar", "märts", "aprill", "mai", "juuni","juuli", "august", "september", "oktoober", "november", "detsember"];
+    //$id = $_SESSION["user_id"];
     $firstname = $_SESSION["firstname"];
     $surname = $_SESSION["lastname"];
     $email = $_SESSION["email"];
@@ -120,14 +105,14 @@
             }
 
             //email
-            if(isset($_POST["email_input"]) and !empty($_POST["email_input"])){
-                $email = test_input(filter_var($_POST["email_input"], FILTER_VALIDATE_EMAIL));
-                if(empty($email)){
-                    $email_error = "Palun sisesta oma e-posti aadress!";
-                }
-            } else {
-                $email_error = "Palun sisesta oma e-posti aadress!";
-            }
+            // if(isset($_POST["email_input"]) and !empty($_POST["email_input"])){
+            //     //$email = test_input(filter_var($_POST["email_input"], FILTER_VALIDATE_EMAIL));
+            //     if(empty($email)){
+            //         $email_error = "Palun sisesta oma e-posti aadress!";
+            //     }
+            // } else {
+            //     $email_error = "Palun sisesta oma e-posti aadress!";
+            // }
             //parool
             if(isset($_POST["password_input"]) and !empty($_POST["password_input"])){
                 if(strlen($_POST["password_input"]) < 8){

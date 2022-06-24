@@ -77,6 +77,27 @@ function sign_in($email, $password){
 
 }
 
-// function edit_user($firstname, $surname, $gender, $birth_date, $email, $password) {
+function edit_user($firstname, $surname, $gender, $birth_date, $email, $password) {
+    //TODO Loen kasutaja andmed baasist
+    $notice = 0;
+    $conn = new mysqli($GLOBALS["server_host"], $GLOBALS["server_user_name"], $GLOBALS["server_password"], $GLOBALS["database"]);
+    $conn->set_charset("utf8");
 
-// }
+    $stmt = $conn->prepare("UPDATE vr22_users SET firstname = ?, lastname = ?, gender = ?, birthdate = ?, password = ?  WHERE email = ?");
+    echo $conn->error;
+    //salasõna krüpt
+    $options = ["cost"=>12];
+    $pwd_hash = password_hash($password, PASSWORD_BCRYPT, $options);
+    $stmt->bind_param("ssisss", $firstname, $surname, $gender, $birth_date, $pwd_hash, $email);
+    
+    if($stmt->execute()){
+        $notice = 1;
+        echo "Kasutaja andmete muutmine õnnestus!";
+    } else {
+        echo "Kasutaja andmete muutmine ebaõnnestus!";
+    }
+    $stmt->close();
+    $conn->close();
+
+    return $notice;
+}
