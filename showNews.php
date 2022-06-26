@@ -5,6 +5,7 @@
     require_once "useSession.php";
 
     $authorName = "Riina Muld";
+    $amount = 5;
 
     if(isset($_POST['delete'])){
         $id = $_POST['delete_post_id'];  
@@ -36,10 +37,7 @@
         <main>
            <section>
                <h2>Uudised</h2>
-               
-               <!-- <?php echo all_news(); ?> -->
-               <!-- <?php echo first_five_news(); ?> -->
-               <?php echo  five_newest_news(); ?>
+               <?php echo read_news(5); ?>
                
            </section>
 
