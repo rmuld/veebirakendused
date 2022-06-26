@@ -20,8 +20,8 @@ class PhotoUpload {
         if(isset($this->tempImage)){
             imagedestroy($this->tempImage);
         }
-        if(isset($this->$newTempImage)){
-            @imagedestroy($this->$newTempImage);
+        if(isset($this->newTempImage)){
+            @imagedestroy($this->newTempImage);
         }
     }
 

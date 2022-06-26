@@ -1,5 +1,4 @@
 <?php
-    //require_once "fncGeneral.php";
     require_once "../../conf.php";
     require_once "fncGallery.php";
     require_once "useSession.php";
@@ -28,7 +27,8 @@
         <meta author='<?php echo $_SESSION["firstname"];?>' name="RIF21 veebirakendused ja nende loomine" content="Harjutusi PHPga">
         <meta name="viewport" content="width=devce-width, inital-scale=1.0">
         <link rel="stylesheet" href="styles/stiilid.css">
-        <script src="js/modal.js" defer></script>   
+        <link rel="stylesheet" href="styles/modal.css">
+        <script src="JS/modal.js" defer></script>   
     </head>
     <body>
         <header id="pais">
@@ -70,8 +70,6 @@
                 </div> -->
                 <p>
 			<?php
-				//Eelmine leht | Järgmine leht
-				//<span>Eelmine leht</span> | <span><a href="?page=2">Järgmine leht</a></span>
 				if($page > 1){
 					echo '<span><a href="?page=' .($page - 1) .'">Eelmine leht</a></span>';
 				} else {

@@ -82,7 +82,7 @@ function read_public_photo_thumbs($privacy, $page, $limit){
     $stmt->execute();
     while($stmt->fetch()){
         $photo_html .= '<div class="thumbgallery">' ."\n";
-        $photo_html .= '<img src="'.$photoDir .$filename_from_db .'" alt="';
+        $photo_html .= '<img src="'.$photoDir .$filename_from_db .'" data-id="' .$id_from_db .'" data-filename="' .$filename_from_db .'" alt="';
         if(empty($alttext_from_db)){
             $photo_html .= "Üleslaetud foto";
         } else {

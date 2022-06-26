@@ -78,17 +78,19 @@ function sign_in($email, $password){
 }
 
 function edit_user($firstname, $surname, $gender, $birth_date, $email, $password) {
-    //TODO Loen kasutaja andmed baasist
     $notice = 0;
+    $userPassword = $_SESSION["password"];
     $conn = new mysqli($GLOBALS["server_host"], $GLOBALS["server_user_name"], $GLOBALS["server_password"], $GLOBALS["database"]);
     $conn->set_charset("utf8");
 
     $stmt = $conn->prepare("UPDATE vr22_users SET firstname = ?, lastname = ?, gender = ?, birthdate = ?, password = ?  WHERE email = ?");
     echo $conn->error;
     //salasõna krüpt
-    $options = ["cost"=>12];
-    $pwd_hash = password_hash($password, PASSWORD_BCRYPT, $options);
-    $stmt->bind_param("ssisss", $firstname, $surname, $gender, $birth_date, $pwd_hash, $email);
+    if($userPassword !== $password) {
+        $options = ["cost"=>12];
+        $userPassword = password_hash($password, PASSWORD_BCRYPT, $options);
+    }
+    $stmt->bind_param("ssisss", $firstname, $surname, $gender, $birth_date, $userPassword, $email);
     
     if($stmt->execute()){
         $notice = 1;

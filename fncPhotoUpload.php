@@ -46,7 +46,6 @@ function resizePhoto($src, $width, $height){
     //kuhu imagesse, kust imagest, kuhu x, kuhu y, kust x, kust y, kuhu kui laialt, kuhu kui kõrgelt, kust kui laialt, kust kui kõrgelt
     imagecopyresampled($tempImage, $src, 0, 0, 0, 0, $newWidth, $newHeight, $imageWidth, $imageHeight);
     return $tempImage;
-    //TODO thumbnail puhul kust x ja kust y tuleb croppida
 }
 
 function resizeToThumb($src, $width, $height){

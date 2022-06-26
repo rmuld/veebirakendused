@@ -2,8 +2,8 @@ let photoDir = "../../~toivo.parnpuu/vr/vr-rinde/upload_normal/";
 let photoId;
 
 window.onload = function () {
-    
-    let allThumbs = document.querySelector(".thumbgallery").querySelectorAll(".thumbs");
+    //kõik thumbnailid modalis avanema
+    let allThumbs = document.querySelector(".gallery").querySelectorAll(".thumbs");
     for (let i = 0; i < allThumbs.length; i++){
         allThumbs[i].addEventListener("click", openModal);
     }
@@ -16,7 +16,7 @@ function openModal(e) {
     for (let i = 1; i < 6; i++){
         document.querySelector("#rate" + i).checked = false;
     }
-    document.querySelector("#storerating").addEventListener("click", storeRating);
+    document.querySelector("#storeRating").addEventListener("click", storeRating);
     document.querySelector("#modalimage").src = photoDir + e.target.dataset.filename;
     document.querySelector("#modalcaption").innerHTML = e.target.alt;
     document.querySelector("#modal").showModal();

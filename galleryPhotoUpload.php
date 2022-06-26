@@ -15,8 +15,8 @@
     //unset käsiga saame muutja ära nullida
     //unset($genericObject);
 
-    $photo_error = null;
-    $photo_upload_notice = null;
+    $photoError = null;
+    $photoUploadNotice = null;
 
     $altText = null;
     $privacy = 1;
@@ -39,14 +39,10 @@
             //vaatame, mis jõuab üles
             //var_dump($_POST);
             //var_dump($_FILES);
-
             
-
-
             //kas on olemas pilt
             if (isset($_FILES["photo_input"]["tmp_name"]) and !empty($_FILES["photo_input"]["tmp_name"])){
                 //pildifail on valitud
-
                 //kas on foto
                 $imageCheck = getimagesize($_FILES["photo_input"]["tmp_name"]);
                 if($imageCheck !== false){
@@ -59,15 +55,13 @@
                     if($imageCheck["mime"] == "image/gif"){
                         $fileType = "gif";
                     }
-
-                    //tuleks kontrollida, kas on lubatud formaat (jpg, png, gif või osa neist)
                 } else {
-                    $photo_error = "Valitud fail pole foto!";
+                    $photoError = "Valitud fail pole foto!";
                 }
 
                 //kui on foto, kas on lubatud faili maht
-                if($photo_error == null and $_FILES["photo_input"]["size"] > $photoUploadSizeLimit){
-                    $photo_error = "Valitud fail on liiga suur!";
+                if($photoError == null and $_FILES["photo_input"]["size"] > $photoUploadSizeLimit){
+                    $photoError = "Valitud fail on liiga suur!";
                 }
 
                 //kas alt tekst on ok
@@ -75,19 +69,15 @@
                     $altText = test_input($_POST["alt_input"]);
 
                     if(empty($altText)){
-                        $photo_error = "Alt text puudu!";
+                        $photoError = "Alt text puudu!";
                     }
                 } else {                
-                    $photo_error = "Sisestasid mingi jama!";
+                    $photoError = "Sisestasid mingi jama!";
                     $altText = "";
                 }
 
-                //TODO: võiks "puhastada" Alt teksti, st pole kohustuslik sisestamine
-
-                //TODO: võiks kontrollida, kas radio button on valitud
-
                 //kui kõik on korras, siis laeme üles
-                if($photo_error == null){
+                if($photoError == null){
                     //võtame kasutusele klassi
                     $upload = new PhotoUpload($_FILES["photo_input"], $fileType);
                     
@@ -109,20 +99,20 @@
                     $upload->addWatermark($watermark);
 
                     //salvestame muudetud/õige suurusega pildi soovitud kohta
-                    //$photo_upload_notice = saveImage($myNormalImage, $galleryPhotoNormalFolder .$fileName, $fileType);
-                    $photo_upload_notice = $upload->saveImage($galleryPhotoNormalFolder .$fileName);
+                    //$photoUploadNotice = saveImage($myNormalImage, $galleryPhotoNormalFolder .$fileName, $fileType);
+                    $photoUploadNotice = "Normaalsuuruses " .$upload->saveImage($galleryPhotoNormalFolder .$fileName);
 
                     //salvestame thumbnaili soovitud kohta
-                    //$photo_upload_notice = saveImage($myThumbnailImage, $galleryPhotoThumbnailFolder .$fileName, $fileType);
+                    //$photoUploadNotice = saveImage($myThumbnailImage, $galleryPhotoThumbnailFolder .$fileName, $fileType);
                     $upload->resize_photo($thumbnailWidth, $thumbnailHeight);
-                    $photo_upload_notice = $upload->saveImage($galleryPhotoThumbnailFolder .$fileName);
+                    $photoUploadNotice = "Pisipildi ". $upload->saveImage($galleryPhotoThumbnailFolder .$fileName);
 
                     //kopeerime originaali soovitud kohta
                     //move_uploaded_file($_FILES["photo_input"]["tmp_name"], $galleryPhotoOrigFolder .$fileName);
-                    $photo_upload_notice = $upload->moveOrigPhoto($galleryPhotoOrigFolder .$fileName);
+                    $photoUploadNotice = $upload->moveOrigPhoto($galleryPhotoOrigFolder .$fileName);
 
                     //talletame andmebaasi
-                    $photo_upload_notice .= storePhotoData($fileName, $_POST["alt_input"], $_POST["privacy_input"]);
+                    $photoUploadNotice .= " " .storePhotoData($fileName, $_POST["alt_input"], $_POST["privacy_input"]);
 
                     //tühjendame mälu
                     //imagedestroy($myTempImage);
@@ -134,11 +124,11 @@
                 }
 
             } else {
-                $photo_error = "Pildifaili pole valitud!";
+                $photoError = "Pildifaili pole valitud!";
             }
 
-            if($photo_upload_notice == null) {
-                $photo_upload_notice = $photo_error;
+            if($photoUploadNotice == null) {
+                $photoUploadNotice = $photoError;
             }
         }
     }
@@ -185,7 +175,7 @@
 			<br>
 			<input type="submit" name="photo_submit" id="photo_submit" value="Lae pilt üles">
 		</form>
-		<span id="notice"><?php echo $photo_upload_notice; ?></span>
+		<span id="notice"><?php echo $photoUploadNotice; ?></span>
 	</section>
 	<?php
 		require_once "pagefooter.php";
